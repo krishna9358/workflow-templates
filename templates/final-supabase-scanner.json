@@ -1,0 +1,398 @@
+{
+  "_metadata": {
+    "name": "final supabase scanner",
+    "description": "fas",
+    "category": "automation",
+    "tags": [
+      "security"
+    ],
+    "author": "sdf",
+    "version": "1.0.0"
+  },
+  "graph": {
+    "name": "final supabase scanner",
+    "edges": [
+      {
+        "id": "reactflow__edge-entry-point-1768851428240DATABASE_URL-supabase-scanner-1769081028594supabaseUrl",
+        "type": "default",
+        "source": "entry-point-1768851428240",
+        "target": "supabase-scanner-1769081028594",
+        "sourceHandle": "DATABASE_URL",
+        "targetHandle": "supabaseUrl"
+      },
+      {
+        "id": "reactflow__edge-entry-point-1768851428240DATABASE_URI-supabase-scanner-1769081028594databaseConnectionString",
+        "type": "default",
+        "source": "entry-point-1768851428240",
+        "target": "supabase-scanner-1769081028594",
+        "sourceHandle": "DATABASE_URI",
+        "targetHandle": "databaseConnectionString"
+      },
+      {
+        "id": "reactflow__edge-entry-point-1768851428240ENDPOINT-http-request-1768914887934url",
+        "type": "default",
+        "source": "entry-point-1768851428240",
+        "target": "http-request-1768914887934",
+        "sourceHandle": "ENDPOINT",
+        "targetHandle": "url"
+      },
+      {
+        "id": "reactflow__edge-supabase-scanner-1769081028594rawOutput-http-request-1768914887934body",
+        "type": "default",
+        "source": "supabase-scanner-1769081028594",
+        "target": "http-request-1768914887934",
+        "sourceHandle": "rawOutput",
+        "targetHandle": "body"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "entry-point-1768851428240",
+        "data": {
+          "label": "Entry Point",
+          "config": {
+            "params": {
+              "runtimeInputs": [
+                {
+                  "id": "DATABASE_URL",
+                  "type": "text",
+                  "label": "Database Url",
+                  "required": true,
+                  "description": ""
+                },
+                {
+                  "id": "DATABASE_URI",
+                  "type": "secret",
+                  "label": "Database URI",
+                  "required": true,
+                  "description": ""
+                },
+                {
+                  "id": "ENDPOINT",
+                  "type": "text",
+                  "label": "Endpoint",
+                  "required": true,
+                  "description": ""
+                }
+              ]
+            },
+            "inputOverrides": {}
+          },
+          "dynamicInputs": [
+            {
+              "id": "__runtimeData",
+              "label": "Runtime Data",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "editor": "json",
+              "required": false,
+              "valuePriority": "manual-first"
+            }
+          ],
+          "dynamicOutputs": [
+            {
+              "id": "DATABASE_URL",
+              "label": "Database Url",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": ""
+            },
+            {
+              "id": "DATABASE_URI",
+              "label": "Database URI",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "secret"
+              },
+              "required": true,
+              "description": ""
+            },
+            {
+              "id": "ENDPOINT",
+              "label": "Endpoint",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": ""
+            }
+          ]
+        },
+        "type": "core.workflow.entrypoint",
+        "position": {
+          "x": -461.88491524693814,
+          "y": -827.639513822357
+        }
+      },
+      {
+        "id": "http-request-1768914887934",
+        "data": {
+          "label": "HTTP Request",
+          "config": {
+            "params": {
+              "method": "POST",
+              "timeout": 30000,
+              "authType": "none",
+              "contentType": "application/json",
+              "failOnError": true
+            },
+            "inputOverrides": {}
+          },
+          "dynamicInputs": [
+            {
+              "id": "url",
+              "label": "URL",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "The target API endpoint URL."
+            },
+            {
+              "id": "body",
+              "label": "Body",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": false,
+              "description": "Request body. For JSON, ensure it is a valid JSON string."
+            },
+            {
+              "id": "headers",
+              "label": "Headers",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "required": false,
+              "description": "Key-value map of HTTP headers."
+            }
+          ],
+          "dynamicOutputs": [
+            {
+              "id": "status",
+              "label": "Status Code",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "required": true,
+              "description": "HTTP status code (e.g. 200, 404)."
+            },
+            {
+              "id": "statusText",
+              "label": "Status Text",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "HTTP status text returned by the server."
+            },
+            {
+              "id": "data",
+              "label": "Response Data",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "required": true,
+              "description": "Automatically parsed JSON response body."
+            },
+            {
+              "id": "headers",
+              "label": "Headers",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "required": true,
+              "description": "Response headers returned by the server."
+            },
+            {
+              "id": "rawBody",
+              "label": "Raw Body",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "Raw string content of the response."
+            }
+          ]
+        },
+        "type": "core.http.request",
+        "position": {
+          "x": 388.66370553548745,
+          "y": -778.5556048668466
+        }
+      },
+      {
+        "id": "supabase-scanner-1769081028594",
+        "data": {
+          "label": "Supabase Security Scanner",
+          "config": {
+            "params": {},
+            "inputOverrides": {}
+          },
+          "dynamicInputs": [
+            {
+              "id": "supabaseUrl",
+              "label": "Supabase URL",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "Project URL. Example: https://abcdefghijklmno12345.supabase.co. You may also paste just the project ref.",
+              "valuePriority": "manual-first"
+            },
+            {
+              "id": "databaseConnectionString",
+              "label": "Database Connection String",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "secret"
+              },
+              "editor": "secret",
+              "required": false,
+              "description": "Postgres connection string from Project Settings → Database. You can also set this in Parameters as Database URL."
+            },
+            {
+              "id": "serviceRoleKey",
+              "label": "Service Role Key",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "secret"
+              },
+              "editor": "secret",
+              "required": false,
+              "description": "Optional Service Role key from Project Settings → API (enables API checks)."
+            },
+            {
+              "id": "projectRef",
+              "label": "Project Reference",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": false,
+              "description": "Optional explicit project ref. Inferred from URL when omitted."
+            }
+          ],
+          "dynamicOutputs": [
+            {
+              "id": "projectRef",
+              "label": "Project Ref",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "Supabase project reference for the scan."
+            },
+            {
+              "id": "score",
+              "label": "Security Score",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "required": true,
+              "description": "0–100 score computed by the scanner."
+            },
+            {
+              "id": "summary",
+              "label": "Summary",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "required": false,
+              "description": "Summary metadata from the scanner output."
+            },
+            {
+              "id": "issues",
+              "label": "Issues",
+              "connectionType": {
+                "kind": "list",
+                "element": {
+                  "kind": "primitive",
+                  "name": "json"
+                }
+              },
+              "required": false,
+              "description": "Array of issues flagged by the scanner."
+            },
+            {
+              "id": "results",
+              "label": "Results",
+              "connectionType": {
+                "kind": "list",
+                "element": {
+                  "kind": "contract",
+                  "name": "core.analytics.result.v1"
+                }
+              },
+              "required": true,
+              "description": "Analytics-ready findings with scanner, finding_hash, and severity. Connect to Analytics Sink."
+            },
+            {
+              "id": "report",
+              "label": "Scanner Report",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "required": true,
+              "description": "Full JSON report produced by the scanner."
+            },
+            {
+              "id": "rawOutput",
+              "label": "Raw Output",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "Raw console output for debugging."
+            },
+            {
+              "id": "errors",
+              "label": "Errors",
+              "connectionType": {
+                "kind": "list",
+                "element": {
+                  "kind": "primitive",
+                  "name": "text"
+                }
+              },
+              "required": false,
+              "description": "Errors captured during the scan."
+            }
+          ]
+        },
+        "type": "shipsec.supabase.scanner",
+        "position": {
+          "x": -36.876839839520585,
+          "y": -1106.615791137474
+        }
+      }
+    ],
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "zoom": 1
+    },
+    "description": ""
+  },
+  "requiredSecrets": []
+}
