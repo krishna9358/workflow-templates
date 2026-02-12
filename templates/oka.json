@@ -1,0 +1,77 @@
+{
+  "_metadata": {
+    "name": "oka",
+    "category": "testing",
+    "tags": [
+      "security"
+    ],
+    "author": "krishna",
+    "version": "1.0.0"
+  },
+  "graph": {
+    "name": "Untitled Workflow",
+    "edges": [],
+    "nodes": [
+      {
+        "id": "entry-point-1770915714617",
+        "data": {
+          "label": "Entry Point",
+          "config": {
+            "params": {
+              "runtimeInputs": [
+                {
+                  "id": "input1",
+                  "type": "array",
+                  "label": "Input 1",
+                  "required": true,
+                  "description": ""
+                }
+              ]
+            },
+            "inputOverrides": {}
+          },
+          "dynamicInputs": [
+            {
+              "id": "__runtimeData",
+              "label": "Runtime Data",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "editor": "json",
+              "required": false,
+              "valuePriority": "manual-first"
+            }
+          ],
+          "dynamicOutputs": [
+            {
+              "id": "input1",
+              "label": "Input 1",
+              "connectionType": {
+                "kind": "list",
+                "element": {
+                  "kind": "primitive",
+                  "name": "text"
+                }
+              },
+              "required": true,
+              "description": ""
+            }
+          ]
+        },
+        "type": "core.workflow.entrypoint",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "zoom": 1
+    },
+    "description": ""
+  },
+  "requiredSecrets": []
+}
