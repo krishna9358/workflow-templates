@@ -1,0 +1,142 @@
+{
+  "_metadata": {
+    "name": "final test aaj",
+    "description": "final test aaj",
+    "category": "automation",
+    "tags": [
+      "security"
+    ],
+    "author": "krishna9358",
+    "version": "1.0.0"
+  },
+  "graph": {
+    "name": "final test aaj",
+    "edges": [
+      {
+        "id": "reactflow__edge-entry-point-1770989494189input1-console-log-1770989498175data",
+        "type": "default",
+        "source": "entry-point-1770989494189",
+        "target": "console-log-1770989498175",
+        "sourceHandle": "input1",
+        "targetHandle": "data"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "entry-point-1770989494189",
+        "data": {
+          "label": "Entry Point",
+          "config": {
+            "params": {
+              "runtimeInputs": [
+                {
+                  "id": "input1",
+                  "type": "array",
+                  "label": "Input 1",
+                  "required": true,
+                  "description": ""
+                }
+              ]
+            },
+            "inputOverrides": {}
+          },
+          "dynamicInputs": [
+            {
+              "id": "__runtimeData",
+              "label": "Runtime Data",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "json"
+              },
+              "editor": "json",
+              "required": false,
+              "valuePriority": "manual-first"
+            }
+          ],
+          "dynamicOutputs": [
+            {
+              "id": "input1",
+              "label": "Input 1",
+              "connectionType": {
+                "kind": "list",
+                "element": {
+                  "kind": "primitive",
+                  "name": "text"
+                }
+              },
+              "required": true,
+              "description": ""
+            }
+          ]
+        },
+        "type": "core.workflow.entrypoint"
+      },
+      {
+        "id": "console-log-1770989498175",
+        "data": {
+          "label": "Console Log",
+          "config": {
+            "params": {},
+            "inputOverrides": {}
+          },
+          "dynamicInputs": [
+            {
+              "id": "data",
+              "label": "Data",
+              "connectionType": {
+                "kind": "any"
+              },
+              "required": true,
+              "description": "Any data to log (objects will be JSON stringified)."
+            },
+            {
+              "id": "label",
+              "label": "Label",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": false,
+              "description": "Optional label to identify this log entry."
+            }
+          ],
+          "dynamicOutputs": [
+            {
+              "id": "result",
+              "label": "Result",
+              "connectionType": {
+                "kind": "contract",
+                "name": "core.console-log.result.v1"
+              },
+              "required": true,
+              "description": "Confirmation that data was logged."
+            },
+            {
+              "id": "logged",
+              "label": "Logged",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "required": true,
+              "description": "Indicates whether the log entry was emitted."
+            },
+            {
+              "id": "preview",
+              "label": "Preview",
+              "connectionType": {
+                "kind": "primitive",
+                "name": "text"
+              },
+              "required": true,
+              "description": "Short preview of the logged content."
+            }
+          ]
+        },
+        "type": "core.console.log"
+      }
+    ],
+    "description": ""
+  },
+  "requiredSecrets": []
+}
